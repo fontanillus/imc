@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masa Muscular</title>
+</head>
+
+<body>
+    <style>
+        body {
+            width: 60%;
+            height: auto;
+            font-family: Nunito, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div {
+            background-color: azure;
+        }
+
+        form {
+            border: 5px solid blue;
+        }
+    </style>
+    <h1>Calculo del Índice de Masa Muscular</h1>
+    <div>
+        <form>
+            <p>
+                <label for="name">Tu nombre:</label>
+                <input type="text" id="name" required>
+            </p>
+            <p>
+                <label for="peso">Tu peso en Kilos:</label>
+                <input type="number" id="peso" required>
+            </p>
+            <p>
+                <label for="estatura">Tu estatura en m:</label>
+                <input type="number" id="estatura" required>
+            </p>
+            <p><label for="femenino">Tu sexo:
+                    <input type="radio" name="sexo" value="mujer" required>Mujer</label>
+                <label for="masculino">
+                    <input type="radio" name="sexo" value="hombre" required>Hombre</label>
+            </p>
+            <button type="button" onclick="calcularImc()">Calcular IMC</button>
+            <p id="resultado"></p>
+    </div>
+    </form>
+    <script>
+        const name = document.getElementById("name").value;
+        const femenino = document.getElementById("femenino");
+        const masculino = document.getElementById("masculino");
+        const resultado = document.getElementById("resultado");
+        //const nivel = document.getElementById("nivel");
+        const peso = document.getElementById("peso");
+        const estatura = document.getElementById("estatura");
+
+        function calcularImc() {
+            let nivel = " ";
+            let kilos = parseFloat(peso.value);
+            let altura = parseFloat(estatura.value);
+            let imc = kilos / (altura * altura);
+            //return imc.toFixed(2);
+            console.log(imc);
+
+            if (imc < 18.5) {
+                nivel = "Bajo peso";
+            } else if (imc = 18.5 && imc <= 25) {
+                nivel = "Normal";
+            } else if (imc > 25 && imc <= 30) {
+                nivel = "Sobrepeso";
+            } else if (imc > 30) {
+                nivel = "Obesidad";
+            }
+        }
+
+        resultado.innerHTML = `${name} tiene usted un peso ${nivel} (imc=${imc.toFixed(2)}).`;
+
+
+
+    </script>
+</body>
+
+</html>
